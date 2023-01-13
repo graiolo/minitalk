@@ -6,7 +6,7 @@
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:50:36 by graiolo           #+#    #+#             */
-/*   Updated: 2023/01/13 18:35:14 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/01/13 19:24:01 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@ void	ft_error(void)
 	exit (1);
 }
 
+void	ft_error_server(void)
+{
+	write (1, "Il pid inserito non e' corretto\n", 31);
+	exit (1);
+}
+
 void	ft_correct_msg(int sigusr)
 {
 	(void)sigusr;
@@ -48,8 +54,10 @@ int	main(int argc, char *argv[])
 	i = 0;
 	if (argc != 3)
 		ft_error();
-	signal (SIGUSR1, ft_correct_msg);
 	pid_server = ft_atoi(argv[1]);
+	if (kill(pid_server, 0) != 0)
+		ft_error();
+	signal (SIGUSR1, ft_correct_msg);
 	ft_send_bit(getpid(), pid_server, 32);
 	while (argv[2] != NULL && argv[2][i] != 0)
 		ft_send_bit(argv[2][i++], pid_server, 8);

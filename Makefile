@@ -6,7 +6,7 @@
 #    By: graiolo <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:51:02 by graiolo           #+#    #+#              #
-#    Updated: 2023/01/13 18:47:20 by graiolo          ###   ########.fr        #
+#    Updated: 2023/01/13 19:19:56 by graiolo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,7 @@ ODIR	=	obj/
 
 DIR		=	src/
 
-C_SRC	=	ft_client.c \)
-
+C_SRC	=	ft_client.c \
 
 S_SRC	=	ft_server.c \
 
