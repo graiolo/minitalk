@@ -6,7 +6,7 @@
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:39:07 by graiolo           #+#    #+#             */
-/*   Updated: 2023/01/13 18:35:34 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/01/14 21:48:10 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,24 @@ void	ft_bit_char(bool bin)
 	}	
 }
 
-void	ft_sigusr1(int sigusr)
+void	ft_sigusr(int sigusr)
 {
-	(void)sigusr;
-	ft_bit_char(0);
-}
-
-void	ft_sigusr2(int sigusr)
-{
-	(void)sigusr;
-	ft_bit_char(1);
+	if (sigusr == SIGUSR1)
+		ft_bit_char(0);
+	if (sigusr == SIGUSR2)
+		ft_bit_char(1);
 }
 
 int	main(void)
 {
+	struct sigaction	sign;
+
+	sign.sa_handler = ft_sigusr;
 	ft_printf("%d\n", getpid());
 	while (true)
 	{
-		signal(SIGUSR1, ft_sigusr1);
-		signal(SIGUSR2, ft_sigusr2);
+		sigaction(SIGUSR1, &sign, NULL);
+		sigaction(SIGUSR2, &sign, NULL);
 	}
 	return (0);
 }

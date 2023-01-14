@@ -6,7 +6,7 @@
 #    By: graiolo <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 15:51:02 by graiolo           #+#    #+#              #
-#    Updated: 2023/01/13 19:19:56 by graiolo          ###   ########.fr        #
+#    Updated: 2023/01/14 16:17:18 by graiolo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,8 @@ clean:
 
 fclean: clean
 	@make -C $(DLIB)	fclean
-	$(RM) $(C_NAME) $(S_NAME)
+	$(RM) $(C_NAME) 
+	$(RM) $(S_NAME)
 	@echo "$(NAME): $(RED)Client e Server eliminati correttamente!$(DEF_COLOR)"
 
 dir:
@@ -90,6 +91,7 @@ lib:
 
 norm:
 	norminette
+	norminette -R CheckForbiddenSourceHeader
 
 push:
 	git add *
