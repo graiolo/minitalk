@@ -6,7 +6,7 @@
 #    By: graiolo <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/21 16:38:22 by graiolo           #+#    #+#              #
-#    Updated: 2023/01/12 19:19:16 by graiolo          ###   ########.fr        #
+#    Updated: 2023/01/14 21:59:35 by graiolo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ GREEN = \033[0;92m
 RED = \033[0;91m
 CIANO = \033[0;96m
 
-$(NAME):	dir $(OFILE) 
+$(NAME):	dir $(OFILE)
 			@$(LIB) $(OFILE)
 			@echo "printf: $(GREEN)printf.a compilata con successo!$(DEF_COLOR)"
 

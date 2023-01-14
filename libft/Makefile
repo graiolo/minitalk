@@ -1,27 +1,39 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: graiolo <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/01/14 22:07:10 by graiolo           #+#    #+#              #
+#    Updated: 2023/01/14 22:07:35 by graiolo          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = new_libft
 
 all: $(NAME)
 
 $(NAME): dir
-	make -C libft
-	make -C ft_printf
-	make -C get_next_line
+	make -sC libft
+	make -sC ft_printf
+	make -sC get_next_line
 
 clean:
-	make -C libft clean
-	make -C ft_printf clean
-	make -C get_next_line clean
+	make -sC libft clean
+	make -sC ft_printf clean
+	make -sC get_next_line clean
 
 fclean: clean
-	make -C libft fclean
-	make -C ft_printf fclean
-	make -C get_next_line fclean
+	make -sC libft fclean
+	make -sC ft_printf fclean
+	make -sC get_next_line fclean
 	rm -df archive
 
 bonus: dir
-	make -C libft bonus
-	make -C ft_printf bonus
-	make -C get_next_line bonus
+	make -sC libft bonus
+	make -sC ft_printf bonus
+	make -sC get_next_line bonus
 
 norm:	
 	norminette | sed -E 's/.*\/(.*)/\1/'

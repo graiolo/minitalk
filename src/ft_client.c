@@ -6,7 +6,7 @@
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:50:36 by graiolo           #+#    #+#             */
-/*   Updated: 2023/01/14 21:52:33 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/01/14 22:16:47 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	ft_correct_msg(int sigusr)
 int	main(int argc, char *argv[])
 {
 	struct sigaction	sign;
-	unsigned int	pid_server;
-	int				i;
+	unsigned int		pid_server;
+	int					i;
 
 	(void) argc;
 	sign.sa_handler = ft_correct_msg;
