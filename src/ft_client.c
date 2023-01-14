@@ -6,7 +6,7 @@
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:50:36 by graiolo           #+#    #+#             */
-/*   Updated: 2023/01/13 19:24:01 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/01/14 14:52:48 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char *argv[])
 		ft_error();
 	pid_server = ft_atoi(argv[1]);
 	if (kill(pid_server, 0) != 0)
-		ft_error();
+		ft_error_server();
 	signal (SIGUSR1, ft_correct_msg);
 	ft_send_bit(getpid(), pid_server, 32);
 	while (argv[2] != NULL && argv[2][i] != 0)
