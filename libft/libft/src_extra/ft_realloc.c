@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 14:11:10 by graiolo           #+#    #+#             */
-/*   Updated: 2023/04/20 23:09:06 by graiolo          ###   ########.fr       */
+/*   Created: 2023/04/20 17:08:27 by graiolo           #+#    #+#             */
+/*   Updated: 2023/05/11 21:49:29 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-	DESCRIPTION
-	The strlen() function calculates the length of the string pointed to by 
-	s, excluding the terminating null byte ('\0').
-
-	RETURN VALUE
-	The strlen() function returns the number of bytes in the string pointed 
-	to by s.
-*/
-
 #include "../../include/libft.h"
 
-size_t	ft_strlen(const char *str)
+void	*ft_realloc(void *ptr, size_t size)
 {
-	size_t	cur;
+	void	*new_ptr;
+	size_t	copy_size;
 
-	cur = 0;
-	while (str != NULL && str[cur] != 0)
-		cur++;
-	return (cur);
+	if (size == 0)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	new_ptr = ft_calloc(size, 1);
+	if (new_ptr == NULL)
+		return (NULL);
+	if (ptr != NULL)
+	{
+		if (size < (size_t)malloc_usable_size(ptr))
+			copy_size = size;
+		else
+			copy_size = (size_t)malloc_usable_size(ptr);
+		ft_memcpy(new_ptr, ptr, copy_size);
+		free(ptr);
+	}
+	return (new_ptr);
 }

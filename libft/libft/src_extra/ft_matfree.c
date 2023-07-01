@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   ft_matfree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 15:42:29 by graiolo           #+#    #+#             */
-/*   Updated: 2023/04/20 20:29:27 by graiolo          ###   ########.fr       */
+/*   Created: 2023/03/14 23:24:29 by iragusa           #+#    #+#             */
+/*   Updated: 2023/06/14 16:58:29 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/get_next_line_bonus.h"
+#include "../../include/libft.h"
 
-void	ft_bzero(void *s, size_t len)
+int	ft_free_mat(char **matrix)
 {
-	char	*str;
-	size_t	i;
+	int	y;
 
-	str = (char *)s;
-	i = 0;
-	while (i < len)
+	y = 0;
+	if (matrix == NULL)
+		return (0);
+	while (matrix != NULL && matrix[y] != NULL)
 	{
-		str[i] = '\0';
-		i++;
+		free(matrix[y]);
+		y++;
 	}
+	if (matrix != NULL)
+		free(matrix);
+	return (0);
 }

@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   ft_findchar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: iragusa <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 15:42:29 by graiolo           #+#    #+#             */
-/*   Updated: 2023/04/20 20:29:27 by graiolo          ###   ########.fr       */
+/*   Created: 2022/10/29 20:57:58 by iragusa           #+#    #+#             */
+/*   Updated: 2022/10/29 20:59:29 by iragusa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../../include/libft.h"
 
-#include "../../include/get_next_line_bonus.h"
-
-void	ft_bzero(void *s, size_t len)
+int	ft_findchar(char c, char *s)
 {
-	char	*str;
-	size_t	i;
+	int	i;
 
-	str = (char *)s;
 	i = 0;
-	while (i < len)
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return (1);
+	while (s[i] != '\0')
 	{
-		str[i] = '\0';
+		if (s[i] == (char) c)
+			return (1);
 		i++;
 	}
+	return (0);
 }

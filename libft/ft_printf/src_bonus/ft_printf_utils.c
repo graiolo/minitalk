@@ -6,7 +6,7 @@
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:33:54 by graiolo           #+#    #+#             */
-/*   Updated: 2022/10/21 16:33:58 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/06/23 11:55:14 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_printstr(char *str, t_flag *flag)
 
 	i = 0;
 	if (str == NULL)
-	{	
+	{
 		if (flag->prec < 6)
 			flag->print_length += ft_printf_pad(NULL, *flag);
 		if (flag->prec > 5)

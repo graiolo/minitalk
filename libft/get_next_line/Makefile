@@ -6,7 +6,7 @@
 #    By: graiolo <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/21 16:38:22 by graiolo           #+#    #+#              #
-#    Updated: 2023/01/14 22:05:59 by graiolo          ###   ########.fr        #
+#    Updated: 2023/07/01 18:44:16 by graiolo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,6 @@ CFLAGS		= -Wall -Werror -Wextra -c -I $(IDIR)
 IDIR		= ../include
 
 RM		= rm -f
-
-DRM		= rm -fr
 
 LIB		= ar rcs $(NAME)
 
@@ -41,9 +39,11 @@ OBJ 		= 	$(SRC_FILES:.c=.o)
 OBJ_BONUS	= 	$(SRC_FILES_BONUS:.c=.o)
 
 $(ODIR)%.o : $(DIR)%.c
+	@printf "\033[0;33mCompiling: %s\n\033[0;39m"  $$(basename "$@" .o)
 	$(CC) $(CFLAG) $< -o $@
 
 $(ODIR_BONUS)%.o : $(DIR_BONUS)%.c
+	@printf "\033[0;33mCompiling: %s\n\033[0;39m"  $$(basename "$@" .o)
 	$(CC) $(CFLAG) $< -o $@
 
 OFILE 		= $(addprefix $(ODIR), $(OBJ))
@@ -57,39 +57,27 @@ GREEN = \033[0;92m
 RED = \033[0;91m
 CIANO = \033[0;96m
 
-$(NAME):	dir $(OFILE) 
+$(NAME):	$(OFILE) 
 			@$(LIB) $(OFILE)
-			@echo "get_next_line: $(GREEN)get_next_line.a compilata con successo!$(DEF_COLOR)"
 
 all:		$(NAME)
 
 clean:
 			@$(RM) $(OFILE) $(OFILE_BONUS)
-			@$(DRM) $(ODIR) $(ODIR_BONUS)
-			@echo "get_next_line: $(CIANO)file .obj di get_next_line eliminati con successo!$(DEF_COLOR)"
+			@echo "$(CIANO)file .obj di get_next_line eliminati con successo!$(DEF_COLOR)"
 
 clean2:
 			@$(RM) $(OFILE) $(OFILE_BONUS)
-			@$(DRM) $(ODIR) $(ODIR_BONUS)
+
 
 fclean:		clean2
 			@$(RM) libft.a
-			@echo "get_next_line: $(RED)get_next_line.a rimossa con successo!$(DEF_COLOR)"	
+			@echo "$(RED)get_next_line.a rimossa con successo!$(DEF_COLOR)"	
 
 re:			fclean all
 
-bonus:		dir_bonus $(OFILE_BONUS) 
+bonus:		$(OFILE_BONUS) 
 			@$(LIB) $(OFILE_BONUS)
-			@echo "get_next_line: $(GREEN)bonus get_next_line.a compilata con successo!$(DEF_COLOR)"
-
-dir:
-			if [ ! -d "$(ODIR)" ]; then \
-				mkdir $(ODIR); \
-			fi
-
-dir_bonus:	 dir
-			if [ ! -d "$(ODIR_BONUS)" ]; then \
-				mkdir $(ODIR_BONUS); \
-			fi
+			@echo "$(GREEN)bonus get_next_line.a compilata con successo!$(DEF_COLOR)"
 
 .PHONY:		all clean fclean re

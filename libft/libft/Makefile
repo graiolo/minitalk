@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: graiolo <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/13 19:50:34 by graiolo           #+#    #+#              #
-#    Updated: 2023/01/14 22:10:59 by graiolo          ###   ########.fr        #
+#    Created: 2023/01/03 16:19:41 by graiolo           #+#    #+#              #
+#    Updated: 2023/07/01 18:44:27 by graiolo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,11 @@ NAME 		= ../archive/libft.a
 
 IDIR 		=../include
 
-CFLAG 		= -Wall -Werror -Wextra -I $(IDIR)
+CFLAG 		= -g -Wall -Werror -Wextra -I $(IDIR)
 
 CC 		= gcc $(CFLAG) -c
 
 RM 		= rm -f
-
-DRM		= rm -fr
 
 LIB 		= ar rc $(NAME)
 
@@ -81,7 +79,15 @@ SRC_FILES_EXTRA =	ft_strncpy.c\
 			ft_uitoa.c\
 			ft_min.c\
 			ft_max.c\
-			ft_atof.c
+			ft_atof.c\
+			ft_findchar.c\
+			ft_strcmp.c\
+			ft_matfree.c\
+			ft_realloc.c\
+			ft_malloc.c\
+			ft_realloc_str.c\
+			ft_itoa_na_malloc.c
+
 
 SRC_FILES_BONUS =	ft_lstnew.c\
 			ft_lstadd_front.c\
@@ -95,13 +101,16 @@ SRC_FILES_BONUS =	ft_lstnew.c\
 
 
 $(ODIR)%.o : $(DIR)%.c
-	$(CC) $(CFLAG) $< -o $@
+	@printf "\033[0;33mCompiling: %s\n\033[0;39m"  $$(basename "$@" .o)
+	@$(CC) $(CFLAG) $< -o $@
 
 $(ODIR_EXTRA)%.o : $(DIR_EXTRA)%.c
-	$(CC) $(CFLAG) $< -o $@
+	@printf "\033[0;33mCompiling: %s\n\033[0;39m"  $$(basename "$@" .o)
+	@$(CC) $(CFLAG) $< -o $@
 
 $(ODIR_BONUS)%.o : $(DIR_BONUS)%.c
-	$(CC) $(CFLAG) $< -o $@
+	@printf "\033[0;33mCompiling: %s\n\033[0;39m"  $$(basename "$@" .o)
+	@$(CC) $(CFLAG) $< -o $@
 
 
 
@@ -127,45 +136,27 @@ CIANO = \033[0;96m
 
 all: $(NAME)
 
-$(NAME): dir $(OFILE) $(OFILE_EXTRA)
+$(NAME): $(OFILE) $(OFILE_EXTRA)
 	@$(LIB) $(OFILE_EXTRA)
-	@echo "libft: $(GREEN)libft.a extra file compilati correttamente!$(DEF_COLOR)"
 	@$(LIB) $(OFILE) 
-	@echo "libft: $(GREEN)libft.a compilata con successo!$(DEF_COLOR)"
 
 
 clean:
 	@$(RM) $(OFILE) $(OFILE_EXTRA) $(OFILE_BONUS)
-	@$(DRM) $(ODIR) $(ODIR_EXTRA) $(ODIR_BONUS)
-	@echo "libft: $(CIANO)file .obj di libft eliminati con successo!$(DEF_COLOR)"
+	@echo "$(CIANO)file .obj di libft eliminati con successo!$(DEF_COLOR)"
 
 clean2:
 	@$(RM) $(OFILE) $(OFILE_EXTRA) $(OFILE_BONUS)
-	@$(DRM) $(ODIR) $(ODIR_EXTRA) $(ODIR_BONUS)
 
 fclean: clean2
 	@$(RM) $(NAME)
-	@echo "libft: $(RED)libft.a rimossa con successo!$(DEF_COLOR)"
+	@echo "$(RED)libft.a rimossa con successo!$(DEF_COLOR)"
 
 re: fclean all 
 
-bonus: dir_bonus $(OFILE) $(OFILE_EXTRA) $(OFILE_BONUS)
+bonus: $(OFILE) $(OFILE_EXTRA) $(OFILE_BONUS)
 	@$(LIB) $(OFILE) $(OFILE_EXTRA) $(OFILE_BONUS)
-	@echo "libft: $(GREEN)bonus libft.a compilata con successo!$(DEF_COLOR)"
-
-dir:
-	if [ ! -d "$(ODIR)" ]; then \
-		mkdir $(ODIR); \
-	fi
-	if [ ! -d "$(ODIR_EXTRA)" ]; then \
-		mkdir $(ODIR_EXTRA); \
-	fi
-
-dir_bonus: dir
-	if [ ! -d "$(ODIR_BONUS)" ]; then \
-		mkdir $(ODIR_BONUS); \
-	fi
+	@echo "$(GREEN)bonus libft.a compilata con successo!$(DEF_COLOR)"
 
 .PHONY: all clean fclean bonus
-
 

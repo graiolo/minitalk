@@ -32,13 +32,13 @@ double	ft_atof(char *s)
 	nb = 0.0;
 	power = 1.0;
 	i = 0;
-	if (s[i++] == '-')
-		sign = -1;
-	while (ft_isdigit(s[i]))
+	if (s[i] == '-')
 	{
-		nb = 10.0 * nb + (s[i] - '0');
+		sign = -1;
 		i++;
 	}
+	while (ft_isdigit(s[i]))
+		nb = 10.0 * nb + (s[i++] - '0');
 	if (s[i] == '.')
 		i++;
 	while (ft_isdigit(s[i]))

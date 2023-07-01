@@ -6,7 +6,7 @@
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:42:51 by graiolo           #+#    #+#             */
-/*   Updated: 2022/11/12 15:42:55 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/06/23 11:54:40 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #  define BUFFER_SIZE 10
 # endif
 
+# include "libft.h"
 # include <stdlib.h>
 # include <stdint.h>
 # include <unistd.h>
@@ -27,10 +28,6 @@ char	*ft_line(char *buffer);
 char	*ft_next(char *buffer);
 char	*ft_free(char *buffer, char *buf);
 
-char	*ft_strchr(const char *s, int c);
 void	ft_bzero(void *s, size_t len);
-void	*ft_calloc(size_t nmemb, size_t size);
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

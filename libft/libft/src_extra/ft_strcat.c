@@ -6,7 +6,7 @@
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 09:56:42 by graiolo           #+#    #+#             */
-/*   Updated: 2022/10/12 09:56:51 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/06/17 00:02:37 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,12 @@ char	*ft_strcat(char *dst, const char *src)
 
 	dst_len = ft_strlen(dst);
 	i = 0;
-	while (src[i])
+	while (src != NULL && src[i])
 	{
 		dst[dst_len + i] = src[i];
 		i++;
 	}
-	dst[dst_len + i] = '\0';
+	if (dst != NULL)
+		dst[dst_len + i] = '\0';
 	return (dst);
 }

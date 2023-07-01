@@ -6,12 +6,15 @@
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 15:47:13 by graiolo           #+#    #+#             */
-/*   Updated: 2022/10/15 11:37:02 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/05/16 16:18:32 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# include "get_next_line.h"
+# include "ft_printf.h"
 
 # include <stddef.h>
 # include <stdio.h>
@@ -19,6 +22,7 @@
 # include <unistd.h>
 # include <stdint.h>
 # include <limits.h>
+# include <malloc.h>
 
 typedef struct s_list
 {
@@ -82,5 +86,14 @@ char	*ft_uitoa(unsigned int n);
 int		ft_num_len(unsigned int num);
 int		ft_min(int a, int b);
 int		ft_max(int a, int b);
+int		ft_free_mat(char **matrix);
+int		ft_findchar(char c, char *s);
 double	ft_atof(char *s);
+int		ft_strcmp(const char *s1, const char *s2);
+void	*ft_realloc(void *ptr, size_t size);
+void	*ft_malloc(size_t size);
+void	*ft_realloc_str(void *ptr, size_t size);
+char	*ft_free_join(char *s1, char *s2, int flag);
+char	*ft_itoa_no_malloc(int n);
+
 #endif 

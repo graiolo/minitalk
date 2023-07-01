@@ -6,7 +6,7 @@
 #    By: graiolo <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/21 16:38:22 by graiolo           #+#    #+#              #
-#    Updated: 2023/01/14 21:59:35 by graiolo          ###   ########.fr        #
+#    Updated: 2023/07/01 18:44:10 by graiolo          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,6 @@ CFLAGS		=	 -Wall -Werror -Wextra -c -I $(IDIR)
 IDIR		=	 ../include
 
 RM		=	 rm -f
-
-DRM		= 	rm -fr
 
 LIB		=	 ar rcs $(NAME)
 
@@ -45,10 +43,12 @@ OBJ_BONUS 	=	 $(SRC_FILES_BONUS:.c=.o)
 OBJ	 	=	 $(SRC_FILES:.c=.o)
 
 $(ODIR_BONUS)%.o : $(DIR_BONUS)%.c
-	$(CC) $(CFLAG) $< -o $@
+	@printf "\033[0;33mpCompiling: %s\n\033[0;39m"  $$(basename "$@" .o)
+	@$(CC) $(CFLAG) $< -o $@
 
 $(ODIR)%.o : $(DIR)%.c
-	$(CC) $(CFLAG) $< -o $@
+	@printf "\033[0;33mCompiling: %s\n\033[0;39m"  $$(basename "$@" .o)
+	@$(CC) $(CFLAG) $< -o $@
 
 OFILE_BONUS	=	 $(addprefix $(ODIR_BONUS), $(OBJ_BONUS))
 
@@ -60,39 +60,27 @@ GREEN = \033[0;92m
 RED = \033[0;91m
 CIANO = \033[0;96m
 
-$(NAME):	dir $(OFILE)
+$(NAME):	$(OFILE) 
 			@$(LIB) $(OFILE)
-			@echo "printf: $(GREEN)printf.a compilata con successo!$(DEF_COLOR)"
 
 all:		$(NAME)
 
 clean:
 			@$(RM) $(OFILE) $(OFILE_BONUS)
-			@$(DRM) $(ODIR) $(ODIR_BONUS)
-			@echo "printf: $(CIANO)file .obj di printf eliminati con successo!$(DEF_COLOR)"
+			@echo "$(CIANO)file .obj di printf eliminati con successo!$(DEF_COLOR)"
 
 clean2:
 			@$(RM) $(OFILE) $(OFILE_BONUS)
-			@$(DRM) $(ODIR) $(ODIR_BONUS)
+
 
 fclean:		clean2
 			@$(RM) libft.a
-			@echo "printf: $(RED)printf.a rimossa con successo!$(DEF_COLOR)"	
+			@echo "$(RED)printf.a rimossa con successo!$(DEF_COLOR)"	
 
 re:			fclean all
 
-bonus:		dir_bonus $(OFILE) $(OFILE_BONUS) 
+bonus:		$(OFILE) $(OFILE_BONUS) 
 			@$(LIB) $(OFILE) $(OFILE_BONUS)
-			@echo "printf: $(GREEN)bonus printf.a compilata con successo!$(DEF_COLOR)"
-
-dir:
-			if [ ! -d "$(ODIR)" ]; then \
-				mkdir $(ODIR); \
-			fi
-
-dir_bonus:	 dir
-			if [ ! -d "$(ODIR_BONUS)" ]; then \
-				mkdir $(ODIR_BONUS); \
-			fi
+			@echo "$(GREEN)bonus printf.a compilata con successo!$(DEF_COLOR)"
 
 .PHONY:		all clean fclean re

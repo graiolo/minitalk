@@ -6,7 +6,7 @@
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:43:26 by graiolo           #+#    #+#             */
-/*   Updated: 2022/11/12 15:43:29 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/06/23 11:53:52 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ char	*ft_line(char *buffer)
 		line[i] = buffer[i];
 		i++;
 	}
-	if (buffer[i] && buffer[i] == '\n')
-		line[i++] = '\n';
 	return (line);
 }
 
@@ -98,7 +96,7 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, NULL, 0) < 0)
-	{	
+	{
 		if (buffer != NULL)
 		{
 			free(buffer);

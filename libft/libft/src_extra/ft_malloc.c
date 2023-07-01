@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 15:42:29 by graiolo           #+#    #+#             */
-/*   Updated: 2023/04/20 20:29:27 by graiolo          ###   ########.fr       */
+/*   Created: 2023/04/28 18:26:37 by graiolo           #+#    #+#             */
+/*   Updated: 2023/04/28 19:23:22 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/get_next_line_bonus.h"
+#include "../../include/libft.h"
 
-void	ft_bzero(void *s, size_t len)
+void	*ft_malloc(size_t size)
 {
-	char	*str;
-	size_t	i;
-
-	str = (char *)s;
-	i = 0;
-	while (i < len)
-	{
-		str[i] = '\0';
-		i++;
-	}
+	(void)size;
+	return (NULL);
 }

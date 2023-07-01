@@ -6,7 +6,7 @@
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 15:41:38 by graiolo           #+#    #+#             */
-/*   Updated: 2022/11/12 15:41:45 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/06/23 11:54:12 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char	*get_next_line(int fd)
 	static char	*buffer[1024];
 
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, NULL, 0) < 0)
-	{	
+	{
 		if (buffer[fd] != NULL)
 		{
 			free(buffer[fd]);

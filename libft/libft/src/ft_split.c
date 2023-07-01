@@ -6,7 +6,7 @@
 /*   By: graiolo <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:03:14 by graiolo           #+#    #+#             */
-/*   Updated: 2022/10/19 11:06:47 by graiolo          ###   ########.fr       */
+/*   Updated: 2023/06/23 12:10:02 by graiolo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 static	char	*ft_after_split(char const *s, const char c)
 {
+	if (s == NULL)
+		return (NULL);
 	while (*s && *(s + 1) == c && *s == c)
 		s++;
 	if (*s == c)
@@ -37,6 +39,9 @@ static	void	ft_nsplit(char const *s, const char c, size_t *n)
 	size_t	i;
 
 	i = 0;
+	*n = 0;
+	if (!s)
+		return ;
 	*n = 1;
 	while (s[i])
 	{
@@ -77,7 +82,7 @@ char	**ft_split(char const *s, char c)
 	s_sup = ft_after_split(s, c);
 	ft_nsplit(s_sup, c, &n_of);
 	s_split = (char **)ft_calloc((n_of + 1), sizeof(char *));
-	if (!s_split)
+	if (!s_split || n_of == 0)
 		return (NULL);
 	while (*s_sup)
 	{
